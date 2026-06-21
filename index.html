@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>File Organizer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand-group">
+        <span class="brand-mark">📁</span>
+        <div>
+          <p class="eyebrow">File Organizer</p>
+          <h1>Upload, manage, and download files with ease.</h1>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#home">Home</a>
+        <a href="#upload">Upload Files</a>
+        <a href="#files">Download Files</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button id="toggleTheme" class="ghost-btn" type="button">Dark mode</button>
+    </header>
+
+    <main class="layout-grid">
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <span class="eyebrow">Modern file manager</span>
+          <h2>Fast, elegant, and responsive file organization.</h2>
+          <p>Manage local file metadata in the browser and switch to backend mode seamlessly when a server is available. Perfect for front-end demos and local workflows.</p>
+          <div class="hero-buttons">
+            <button id="heroUploadBtn" class="primary-btn">Upload files</button>
+            <a class="secondary-btn" href="#files">View files</a>
+          </div>
+        </div>
+        <div class="hero-preview">
+          <div class="hero-card">
+            <div class="hero-card__row">
+              <span>Mode</span>
+              <strong id="serverStatus">Local only</strong>
+            </div>
+            <div class="hero-card__row">
+              <span>Max file size</span>
+              <strong>10 MB</strong>
+            </div>
+            <div class="hero-card__row">
+              <span>Allowed formats</span>
+              <strong>Images, docs, audio, video, archive</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="dashboard stats">
+        <article class="stat-card">
+          <h3>Total files</h3>
+          <p id="statTotalFiles">0</p>
+        </article>
+        <article class="stat-card">
+          <h3>Storage used</h3>
+          <p id="statStorage">0 B</p>
+        </article>
+        <article class="stat-card">
+          <h3>Recent uploads</h3>
+          <p id="statRecent">0</p>
+        </article>
+        <article class="stat-card">
+          <h3>Mode</h3>
+          <p id="statMode">Local</p>
+        </article>
+      </section>
+
+      <section class="upload-panel" id="upload">
+        <div class="panel-header">
+          <div>
+            <h3>Upload files</h3>
+            <p>Select or drag files here to upload. Files are validated for type and size before upload.</p>
+          </div>
+          <div class="panel-actions">
+            <button id="chooseBtn" class="secondary-btn" type="button">Select files</button>
+            <button id="uploadBtn" class="primary-btn" type="button">Upload</button>
+          </div>
+        </div>
+
+        <div class="dropzone" id="dropzone">
+          <input id="fileInput" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar,.mp4,.mp3" multiple hidden>
+          <div class="dropzone-inner">
+            <p>Drag and drop files here</p>
+            <span>or click to browse</span>
+          </div>
+        </div>
+
+        <div class="upload-state">
+          <p id="validationHint" class="hint">No files selected.</p>
+          <div id="previewList" class="preview-list"></div>
+        </div>
+      </section>
+
+      <section class="files-panel" id="files">
+        <div class="panel-header">
+          <div>
+            <h3>Uploaded files</h3>
+            <p>Search, filter, and manage your uploaded files.</p>
+          </div>
+          <div class="filters-row">
+            <input id="searchInput" class="search-field" type="search" placeholder="Search files" />
+            <select id="typeFilter" class="filter-select">
+              <option value="all">All types</option>
+              <option value="image">Images</option>
+              <option value="document">Documents</option>
+              <option value="audio">Audio</option>
+              <option value="video">Video</option>
+              <option value="archive">Archive</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="filesGrid" class="files-grid"></div>
+        <div id="pagination" class="pagination"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+
